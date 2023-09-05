@@ -43,9 +43,7 @@ public class CourierLoginTest {
     public void loginWithoutLoginData() {
         Courier courier = randomCourier();
         Response createResponse = courierClient.create(courier);
-//        courier.setLogin(null);
         Response loginResponse = courierClient.login(CourierCreds.specificLogin(courier, null));
-//        id = loginResponse.body().path("id").toString();
         assertEquals("Неправильный код ответа", 400, loginResponse.statusCode());
         assertEquals("Недостаточно данных для входа", loginResponse.body().path("message"));
     }
@@ -54,9 +52,7 @@ public class CourierLoginTest {
     public void loginWithoutPasswordData() {
         Courier courier = randomCourier();
         Response createResponse = courierClient.create(courier);
-//        courier.setLogin(null);
         Response loginResponse = courierClient.login(CourierCreds.specificPassword(courier, ""));
-//        id = loginResponse.body().path("id").toString();
         assertEquals("Неправильный код ответа", 400, loginResponse.statusCode());
         assertEquals("Недостаточно данных для входа", loginResponse.body().path("message"));
     }

@@ -3,7 +3,6 @@ package org.example.courier;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.example.courier.CourierClient;
 import org.example.model.Courier;
 import org.example.model.CourierCreds;
 import org.junit.After;
@@ -11,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.example.courier.CourierGenerator.*;
-import static io.restassured.RestAssured.given;
 import static org.example.utils.Utils.randomString;
 import static org.junit.Assert.assertEquals;
 
@@ -50,7 +48,6 @@ public class CourierCreationTest {
         Courier courier = randomCourier();
 
         Response response = courierClient.create(courier);
-//        id = response.path("id");
         Courier sameLoginCourier =  new Courier()
                 .withLogin(courier.getLogin())
                 .withPassword(randomString(8))
