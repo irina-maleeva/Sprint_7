@@ -31,13 +31,10 @@ public class CourierCreationTest {
     public void checkCreateCourier(){
 
         Courier courier = randomCourier();
-
         Response response = courierClient.create(courier);
-
+        Response loginResponse = courierClient.login(CourierCreds.credsFrom(courier));
         assertEquals("Неверный статус код", 201, response.statusCode());
         assertEquals(true, response.body().path("ok"));
-
-        Response loginResponse = courierClient.login(CourierCreds.credsFrom(courier));
         id = loginResponse.path("id").toString();
         assertEquals("Курьер не залогинен", 200, loginResponse.statusCode());
 
